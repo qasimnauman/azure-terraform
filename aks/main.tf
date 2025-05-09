@@ -1,4 +1,5 @@
 resource "azurerm_kubernetes_cluster" "zpayd-online" {
+  depends_on = [ azurerm_virtual_network.zpayd-online ]
   location                          = var.location
   resource_group_name               = var.resource_group_name
   name                              = var.cluster_name
@@ -16,7 +17,7 @@ resource "azurerm_kubernetes_cluster" "zpayd-online" {
   private_cluster_enabled           = false
 
   oms_agent {
-    log_analytics_workspace_id      = ""
+    log_analytics_workspace_id      = azurerm_log_analytics_workspace.zpayd-online.id
     msi_auth_for_monitoring_enabled = true
   }
 
