@@ -24,12 +24,6 @@ resource "azurerm_kubernetes_cluster" "zpayd-online" {
     dns_zone_ids = []
   }
 
-  windows_profile {
-    admin_password = "" # Masked sensitive attribute
-    admin_username = "azureuser"
-    license        = ""
-  }
-
   tags = {
     "CreatedBy" = "qasim"
     "Name"      = "${var.cluster_name}-aks"
@@ -55,23 +49,24 @@ resource "azurerm_kubernetes_cluster" "zpayd-online" {
     ip_versions         = ["IPv4"]
     load_balancer_sku   = "standard"
     network_data_plane  = "azure"
-    network_mode        = ""
     network_plugin      = "azure"
     network_plugin_mode = "overlay"
-    network_policy      = ""
     outbound_type       = "loadBalancer"
     pod_cidr            = "10.244.0.0/16"
     pod_cidrs           = ["10.244.0.0/16"]
     service_cidr        = "10.0.0.0/16"
     service_cidrs       = ["10.0.0.0/16"]
     load_balancer_profile {
-      idle_timeout_in_minutes     = 0
-      managed_outbound_ip_count   = 1
-      managed_outbound_ipv6_count = 0
-      outbound_ip_address_ids     = []
-      outbound_ip_prefix_ids      = []
-      outbound_ports_allocated    = 0
+      managed_outbound_ip_count = 1
     }
+    # load_balancer_profile {
+    #   idle_timeout_in_minutes     = 0
+    #   managed_outbound_ip_count   = 1
+    #   managed_outbound_ipv6_count = 0
+    #   outbound_ip_address_ids     = []
+    #   outbound_ip_prefix_ids      = []
+    #   outbound_ports_allocated    = 0
+    # }
   }
 
   default_node_pool {
@@ -113,7 +108,7 @@ resource "azurerm_kubernetes_cluster" "zpayd-online" {
     start_date   = "2025-05-04T00:00:00Z"
     start_time   = "00:00"
     utc_offset   = "+00:00"
-    week_index   = ""
+    week_index   = "First"
   }
   maintenance_window_node_os {
     day_of_month = 0
@@ -124,7 +119,7 @@ resource "azurerm_kubernetes_cluster" "zpayd-online" {
     start_date   = "2025-05-04T00:00:00Z"
     start_time   = "00:00"
     utc_offset   = "+00:00"
-    week_index   = ""
+    week_index   = "First"
   }
 }
 
