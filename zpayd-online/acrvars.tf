@@ -1,0 +1,60 @@
+variable "subscription_id" {
+  description = "The Azure subscription ID."
+  type        = string
+}
+
+variable "acr_name" {
+  description = "The name of the Azure Container Registry."
+  type        = string
+}
+
+variable "network_rule_bypass_option" {
+  description = "This hanleds the bypass option for the network rule."
+  type        = string
+}
+
+variable "public_network_access_enabled" {
+  description = "This handles the network rule set."
+  type        = bool
+}
+
+variable "quarantine_policy_enabled" {
+  description = "This handles the quarantine policy."
+  type        = bool
+}
+
+variable "acr_sku" {
+  description = "This holds the value for ACR SKU"
+  type        = string
+}
+
+
+variable "acr_admin_enabled" {
+  description = "Either the admin is enabled or not"
+  type        = bool
+}
+
+variable "anonymous_pull_enabled" {
+  description = "Is Anonymous Pull Enabled for ACR"
+  type        = bool
+}
+
+variable "data_endpoint_enabled" {
+  description = "Is Data Point Enabled in ACR"
+  type        = bool
+}
+
+variable "export_policy_enabled" {
+  description = "Is Export Policy Enabled or not in ACR"
+  type = bool
+}
+
+variable "acr_zone_redundancy_enabled" {
+  description = "Is Zone Redundance Enabled or not in ACR"
+  type = bool
+}
+
+variable "acrtags" {
+  description = "Tags for ACR"
+  type        = map(string)
+}
